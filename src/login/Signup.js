@@ -4,6 +4,7 @@ import { Formik } from "formik";
 import "./Signup.scss";
 
 const initialValues = {
+  name: '',
   email: "",
   password: ""
 };
@@ -11,6 +12,10 @@ const initialValues = {
 const validate = (values) => {
   let errors = {};
   const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+
+  if(!values.name){
+    errors.name = "name is required";
+  }
 
   if (!values.email) {
     errors.email = "Email is required";
@@ -51,8 +56,26 @@ const Signup = () => {
         } = formik;
         return (
           <div className="container">
-            <h1>Sign in to continue</h1>
+            <h1 className="text-center">Sign in to continue</h1>
             <form onSubmit={handleSubmit}>
+              <div className="form-row">
+                <label htmlFor="name">User Name</label>
+                <input
+                  type="name"
+                  name="name"
+                  id="name"
+                  value={values.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  className={
+                    errors.name && touched.name ? "input-error" : null
+                  }
+                />
+                {errors.email && touched.email && (
+                  <span className="error">{errors.email}</span>
+                )}
+              </div>
+              
               <div className="form-row">
                 <label htmlFor="email">Email</label>
                 <input

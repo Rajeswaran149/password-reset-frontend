@@ -26,6 +26,7 @@ const submitForm = (values) => {
 
 const ForgotPassword = () => {
   return (
+
     <Formik
       initialValues={initialValues}
       validate={validate}
@@ -44,7 +45,7 @@ const ForgotPassword = () => {
         } = formik;
         return (
           <div className="container">
-            <h1>Sign in to continue</h1>
+            <h1 className='text-center'>Forgot Password</h1>
             <form onSubmit={handleSubmit}>
               <div className="form-row">
                 <label htmlFor="email">Email</label>
@@ -64,7 +65,7 @@ const ForgotPassword = () => {
                 )}
               </div>
 
-              
+
 
               <button
                 type="submit"
@@ -74,7 +75,6 @@ const ForgotPassword = () => {
                 Submit
               </button>
             </form>
-            <h3>Forgot Password</h3>
           </div>
         );
       }}
@@ -82,4 +82,4 @@ const ForgotPassword = () => {
   )
 }
 
-export default ForgotPassword
+export default ForgotPassword;

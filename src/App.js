@@ -1,9 +1,9 @@
-
 import './App.css';
 import { Header } from './headers/Header';
 import Signup from './login/Signup';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import ForgotPassword from './login/ForgotPassword';
+import UpdatePassword from './login/UpdatePassword';
 
 function App() {
   return (
@@ -11,12 +11,19 @@ function App() {
       <Header />
       <Router>
         <Switch>
-          <Route path={'/'}>
+
+          <Route exact path="/">
             <Signup />
           </Route>
-          <Route path={'/forgot'}>
+
+          <Route exact path="/password-reset">
             <ForgotPassword />
           </Route>
+
+          <Route exact path="/password-reset/:user_id/:token">
+            <UpdatePassword />
+          </Route>
+
         </Switch>
       </Router>
     </div>
