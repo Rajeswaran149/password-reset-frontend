@@ -1,6 +1,8 @@
 import React from 'react'
 import { Formik } from "formik";
 import './Signup.scss'
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const initialValues = {
   email: "",
@@ -21,6 +23,7 @@ const validate = (values) => {
 
 const submitForm = (values) => {
   console.log(values);
+  axios.post("https://password-reset-flow-rajes.herokuapp.com/api/password-reset",values)
 };
 
 
@@ -75,6 +78,9 @@ const ForgotPassword = () => {
                 Submit
               </button>
             </form>
+            <Link to="/">
+            <h3 className='text-center'>Sign Up</h3>
+            </Link>
           </div>
         );
       }}

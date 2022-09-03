@@ -1,14 +1,16 @@
 import React from "react";
 import { Formik } from "formik";
 import axios from 'axios'
+import {useHistory} from 'react-router-dom'
 
 import "./Signup.scss";
 import { useParams } from "react-router-dom";
 const UpdatePassword = () => {
-    const { user_id, token } = useParams()
+    const { userid, token } = useParams()
+    const history = useHistory()
 
     const initialValues = {
-        token: token,
+        // token: token,
         password: ""
     };
 
@@ -16,9 +18,9 @@ const UpdatePassword = () => {
         let errors = {};
         const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
 
-        if (!values.token) {
-            errors.token = "token is required";
-        }
+        // if (!values.token) {
+        //     errors.token = "token is required";
+        // }
 
         if (!values.password) {
             errors.password = "Password is required";
@@ -30,7 +32,9 @@ const UpdatePassword = () => {
     };
 
     const submitForm = async(values) => {
-        await axios.post(`http://localhost:8080/api/:user_id/:${token}`,values)
+        
+        await axios.post(`https://password-reset-flow-rajes.herokuapp.com/api/password-reset/${userid}/${token}`,values)
+        history.push('/')
     };
 
     return (
@@ -52,10 +56,10 @@ const UpdatePassword = () => {
                 } = formik;
                 return (
                     <div className="container">
-                        <h1 className="text-center">Sign in to continue</h1>
+                        <h1 className="text-center">Update password</h1>
                         <form onSubmit={handleSubmit}>
 
-                            <div className="form-row">
+                            {/* <div className="form-row">
                                 <label htmlFor="token">Token</label>
                                 <input
                                     type="token"
@@ -71,7 +75,7 @@ const UpdatePassword = () => {
                                 {errors.token && touched.token && (
                                     <span className="error">{errors.token}</span>
                                 )}
-                            </div>
+                            </div> */}
 
                             <div className="form-row">
                                 <label htmlFor="password">Password</label>

@@ -20,7 +20,7 @@ function App() {
             <ForgotPassword />
           </Route>
 
-          <Route exact path="/password-reset/:user_id/:token">
+          <Route exact path="/api/password-reset/:userid/:token">
             <UpdatePassword />
           </Route>
 

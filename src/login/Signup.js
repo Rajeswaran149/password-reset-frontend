@@ -1,10 +1,12 @@
 import React from "react";
 import { Formik } from "formik";
+import axios from 'axios' 
 
 import "./Signup.scss";
+import { Link } from "react-router-dom";
 
 const initialValues = {
-  name: '',
+  name: "",
   email: "",
   password: ""
 };
@@ -32,8 +34,10 @@ const validate = (values) => {
   return errors;
 };
 
-const submitForm = (values) => {
+const submitForm = async(values) => {
   console.log(values);
+  await axios.post("https://password-reset-flow-rajes.herokuapp.com/api/users",values)
+  // console.log(userData.data)
 };
 
 const Signup = () => {
@@ -120,7 +124,9 @@ const Signup = () => {
                 Sign Up
               </button>
             </form>
-            <h3>Forgot Password</h3>
+            <Link to="/password-reset">
+            <h3 className="text-center">Forgot Password</h3>
+            </Link>
           </div>
         );
       }}
